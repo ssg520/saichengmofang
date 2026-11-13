@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../vendor/shadcn-tailwind-4.13.0.css";
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
+/* ============================================================
+   赛程魔方 · 「魔方指挥台」视觉方向
+   深海军蓝甲板 + 青色引擎主色 + 八面魔方色（按轮次着色比赛卡）。
+   设计参数仍走 --site-* 变量，工作台可临时覆盖。
+   ============================================================ */
+:root {
+  --site-bg: #0a0e1a;
+  --site-fg: #e8ecf8;
+  --site-accent: #22d3ee;
+  --site-on-accent: #06121a;
+  --site-surface: #131a2e;
+  --site-muted: #8b96b8;
+  --site-border: #26304d;
+  --site-font: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+  --site-radius: 12px;
+  --site-space: 1;
+  --site-type: 1;
+  --site-motion: 1;
+
+  /* 八面魔方色：轮次 1–8 循环取色 */
+  --cube-1: #f43f5e;
+  --cube-2: #38bdf8;
+  --cube-3: #34d399;
+  --cube-4: #fbbf24;
+  --cube-5: #e879f9;
+  --cube-6: #22d3ee;
+  --cube-7: #a78bfa;
+  --cube-8: #fb923c;
+
+  --danger: #fb7185;
+  --success: #34d399;
+
+  --background: var(--site-bg);
+  --foreground: var(--site-fg);
+  --card: #101728;
+  --card-foreground: var(--site-fg);
+  --popover: #101728;
+  --popover-foreground: var(--site-fg);
+  --primary: var(--site-accent);
+  --primary-foreground: var(--site-on-accent);
+  --secondary: var(--site-surface);
+  --secondary-foreground: var(--site-fg);
+  --muted: var(--site-surface);
+  --muted-foreground: var(--site-muted);
+  --accent: #1b2440;
+  --accent-foreground: var(--site-fg);
+  --destructive: var(--danger);
+  --border: var(--site-border);
+  --input: #2a3554;
+  --ring: var(--site-accent);
+  --radius: var(--site-radius);
+  --chart-1: var(--cube-2);
+  --chart-2: var(--cube-3);
+  --chart-3: var(--cube-4);
+  --chart-4: var(--cube-5);
+  --chart-5: var(--cube-1);
+  --sidebar: #0d1322;
+  --sidebar-foreground: var(--site-fg);
+  --sidebar-primary: var(--site-accent);
+  --sidebar-primary-foreground: var(--site-on-accent);
+  --sidebar-accent: #1b2440;
+  --sidebar-accent-foreground: var(--site-fg);
+  --sidebar-border: var(--site-border);
+  --sidebar-ring: var(--site-accent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--site-font);
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", Consolas,
+    "Liberation Mono", monospace;
+}
+
+@theme inline {
+  --spacing: calc(0.25rem * var(--site-space));
+  --text-xs: calc(.75rem * var(--site-type));
+  --text-sm: calc(.875rem * var(--site-type));
+  --text-base: calc(1rem * var(--site-type));
+  --text-lg: calc(1.125rem * var(--site-type));
+  --text-xl: calc(1.25rem * var(--site-type));
+  --text-2xl: calc(1.5rem * var(--site-type));
+  --text-3xl: calc(1.875rem * var(--site-type));
+  --text-4xl: calc(2.25rem * var(--site-type));
+  --text-5xl: calc(3rem * var(--site-type));
+  --text-6xl: calc(3.75rem * var(--site-type));
+  --text-7xl: calc(4.5rem * var(--site-type));
+  --text-8xl: calc(6rem * var(--site-type));
+  --text-9xl: calc(8rem * var(--site-type));
+  --default-transition-duration: calc(150ms * var(--site-motion));
+}
+
+@layer base {
+  button, a { transition-duration: calc(150ms * var(--site-motion)); }
+  @media (prefers-reduced-motion: reduce) {
+    button, a { transition-duration: 0ms; }
+    .match-card, .fly-in { animation: none !important; }
+  }
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--site-bg);
+  color: var(--site-fg);
+  font-family: var(--site-font);
+  -webkit-font-smoothing: antialiased;
+  /* 甲板网格纹理：呼应「时间×场地」魔方格栅 */
+  background-image:
+    radial-gradient(circle at 18% -10%, color-mix(in srgb, var(--cube-6) 12%, transparent), transparent 42%),
+    radial-gradient(circle at 92% 4%, color-mix(in srgb, var(--cube-5) 9%, transparent), transparent 40%),
+    linear-gradient(color-mix(in srgb, var(--site-border) 32%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--site-border) 32%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  background-attachment: fixed;
+}
+
+/* 数字/统计用等宽展示字体，强化「引擎」气质 */
+.stat-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ---- 比赛卡：按轮次取魔方色 ---- */
+.match-card {
+  --rc: var(--cube-2);
+  position: relative;
+  border-radius: calc(var(--site-radius) - 4px);
+  border: 1px solid color-mix(in srgb, var(--rc) 42%, var(--site-border));
+  border-left: 3px solid var(--rc);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--rc) 20%, var(--card)), var(--card) 72%);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+  transition: transform calc(140ms * var(--site-motion)) ease,
+    box-shadow calc(140ms * var(--site-motion)) ease,
+    border-color calc(140ms * var(--site-motion)) ease;
+}
+.match-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
+  border-color: color-mix(in srgb, var(--rc) 70%, var(--site-border));
+}
+.match-card.is-dragging { opacity: 0.35; }
+.match-card.is-conflict {
+  --rc: var(--danger);
+  border-color: var(--danger);
+  animation: conflict-pulse calc(1.6s * var(--site-motion)) ease-in-out infinite;
+}
+.match-card.is-pinned::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cube-4) 55%, transparent);
+}
+.round-chip {
+  background: color-mix(in srgb, var(--rc) 26%, transparent);
+  color: color-mix(in srgb, var(--rc) 88%, white);
+  border: 1px solid color-mix(in srgb, var(--rc) 45%, transparent);
+}
+
+/* ---- 看板格子（droppable）---- */
+.cell-drop {
+  border: 1px dashed color-mix(in srgb, var(--site-border) 80%, transparent);
+  border-radius: calc(var(--site-radius) - 4px);
+  background: color-mix(in srgb, var(--site-surface) 40%, transparent);
+  transition: background calc(120ms * var(--site-motion)) ease,
+    border-color calc(120ms * var(--site-motion)) ease;
+}
+.cell-drop.is-over {
+  border-color: var(--site-accent);
+  background: color-mix(in srgb, var(--site-accent) 14%, transparent);
+}
+.cell-drop.is-over-conflict {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 16%, transparent);
+}
+
+/* ---- 签名动画：一键排程卡片飞入归位 ---- */
+@keyframes fly-in {
+  0% { opacity: 0; transform: translateY(-10px) scale(0.9); }
+  60% { opacity: 1; transform: translateY(2px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.fly-in { animation: fly-in calc(460ms * var(--site-motion)) cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes conflict-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--danger) 45%, transparent); }
+  50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--danger) 0%, transparent); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up calc(360ms * var(--site-motion)) ease both; }
+
+@keyframes cube-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.cube-spin { animation: cube-spin calc(2.4s * var(--site-motion)) linear infinite; }
+
+/* ---- 打印视图 ---- */
+@media print {
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    color: #111 !important;
+  }
+  [data-export="exclude"], .no-print { display: none !important; }
+  .match-card {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    border-left: 3px solid var(--rc) !important;
+    color: #111 !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  .print-block { break-inside: avoid; }
+}

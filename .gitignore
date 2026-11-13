@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.tsbuildinfo
+.qoder-sites/
+.qoder-sites.json
+
+# Qoder Sites 本地描述文件（含站点 ID，不公开）
+*.qoder.site
+
+# 同一工作区里的另一个项目与论坛投稿资料，不进入赛程魔方仓库
+baoyan-lab/
+论坛投稿-*.md
+论坛配图-*/
+
